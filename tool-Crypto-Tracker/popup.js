@@ -18,7 +18,7 @@ async function fetchAndDisplayData() {
     try {
         const LIST_COINS = await fetchAllUSDTradingPairs();
         if (LIST_COINS.length === 0) {
-            resultsContainer.innerHTML = '<div class="error">Không thể lấy danh sách coin từ Binance</div>';
+            resultsContainer.innerHTML = '<div class="error">Hệ thống quá tải,vui lòng thử lại sau 5 phút</div>';
             return;
         }
 
