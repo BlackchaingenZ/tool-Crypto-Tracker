@@ -429,3 +429,23 @@ button:hover {
     text-align: center;
     padding: 10px;
 }
+
+#login-container {
+    padding: 15px;
+    min-width: 250px;
+}
+
+#key-input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+#submit-key {
+    width: 100%;
+    padding: 8px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

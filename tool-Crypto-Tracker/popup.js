@@ -18,7 +18,7 @@ async function fetchAndDisplayData() {
     try {
         const LIST_COINS = await fetchAllUSDTradingPairs();
         if (LIST_COINS.length === 0) {
-            resultsContainer.innerHTML = '<div class="error">Hệ thống quá tải,vui lòng thử lại sau 5 phút</div>';
+            resultsContainer.innerHTML = '<div class="error">Hệ thống quá tải, vui lòng thử lại sau 5 phút</div>';
             return;
         }
 
@@ -142,3 +142,53 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tự động tải dữ liệu khi mở popup
     fetchAndDisplayData();
 });
+
+// Xác thực người dùng
+document.addEventListener('DOMContentLoaded', () => {
+    const KEY_LIST_URL = 'https://raw.githubusercontent.com/BlackchaingenZ/tool-Crypto-Tracker/refs/heads/main/keys.json';
+    const loginContainer = document.getElementById('login-container');
+    const mainContent = document.getElementById('main-content');
+    const keyInput = document.getElementById('key-input');
+    const submitBtn = document.getElementById('submit-key');
+    const errorMessage = document.getElementById('error-message');
+
+    // Kiểm tra trạng thái đăng nhập khi mở extension
+    chrome.storage.local.get(['isAuthenticated'], (result) => {
+        if (result.isAuthenticated) {
+            showMainContent();
+        }
+    });
+
+    submitBtn.addEventListener('click', async () => {
+        const userKey = keyInput.value.trim();
+
+        try {
+            const response = await fetch(KEY_LIST_URL);
+            const validKeys = await response.json();
+
+            if (validKeys.includes(userKey)) {
+                chrome.storage.local.set({ isAuthenticated: true });
+                showMainContent();
+            } else {
+                showError('Mã khóa không hợp lệ hoặc đã hết hạn. Liên hệ hỗ trợ: Telegram @ngocnguyen2k02');
+            }
+        } catch (error) {
+            showError('Lỗi kết nối đến server');
+        }
+    });
+
+    function showMainContent() {
+        loginContainer.style.display = 'none';
+        mainContent.style.display = 'block';
+        // Khởi tạo các chức năng chính ở đây
+    }
+
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+        setTimeout(() => {
+            errorMessage.style.display = 'none';
+        }, 3000);
+    }
+});
+

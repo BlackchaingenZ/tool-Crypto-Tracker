@@ -12,7 +12,11 @@
         }
     },
     "host_permissions": [
-        "https://api.binance.com/"
+        "https://api.binance.com/",
+        "https://raw.githubusercontent.com/"
+    ],
+    "permissions": [
+        "storage"
     ],
     "icons": {
         "16": "icons/icon16.png",
