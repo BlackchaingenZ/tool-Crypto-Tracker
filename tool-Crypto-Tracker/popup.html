@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto Tracker - List Coins</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <h1>Tool Check Coin</h1>
+    <h4>Build by: Ngọc Nguyên</h4>
+    <h4>Liên hệ: Telegram ngocnguyen2k02</h4>
+    <h4>Dữ liệu dựa trên thị trường: Spot/Binance (USDT)</h4>
+    <h4>Khung thời gian: 1H</h4>
+    <div><input type="text" id="searchInput" placeholder="Tìm kiếm coin..."></div>
+    <div class="controls">
+        <button id="refreshData">✔Reload</button>
+        <button id="filterOversold">Lọc RSI &lt;30</button>
+        <button id="filterOverbought">Lọc RSI >70</button>
+        <button id="filterHighVolume">Lọc Volume</button>
+    </div>
+
+    <div id="resultsContainer"></div>
+
+    <!-- Thêm type="module" để sử dụng ES Modules -->
+    <script src="popup.js" type="module"></script>
+</body>
+
+</html>
